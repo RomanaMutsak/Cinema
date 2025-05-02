@@ -1,7 +1,6 @@
 // MovieList.jsx
 import React from "react";
 import MovieCard from "./MovieCard";
-import "./MovieList.css";
 
 const MovieList = ({ movies }) => {
   return (

@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>🎬 Кінотеатр Мрій</h1>
+      <h1>MOONVIE</h1>
       <input
         type="text"
         placeholder="Пошук фільму..."
