@@ -1,28 +1,16 @@
-// App.jsx
-import React, { useState } from "react";
-import { movies as movieData } from "./data/movies";
-import MovieList from "./components/MovieList";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Booking from './pages/Booking';
 
 function App() {
-  const [query, setQuery] = useState("");
-
-  const filteredMovies = movieData.filter((movie) =>
-    movie.title.toLowerCase().includes(query.toLowerCase())
-  );
-
   return (
-    <div className="app">
-      <h1>MOONVIE</h1>
-      <input
-        type="text"
-        placeholder="Пошук фільму..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="search-input"
-      />
-      <MovieList movies={filteredMovies} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/booking/:id" element={<Booking />} />
+      </Routes>
+    </Router>
   );
 }
 
