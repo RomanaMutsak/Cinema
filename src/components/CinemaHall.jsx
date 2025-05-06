@@ -1,14 +1,40 @@
 import { useState } from 'react';
-import './CinemaHall.css'; 
+import './CinemaHall.css';
 
 function CinemaHall({ movieId }) {
   const totalSeats = 50;
+  const seatsPerRow = 10; 
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const toggleSeat = (index) => {
     setSelectedSeats((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
+  };
+
+  const formatSeats = (seats) => {
+    const groupedSeats = [];
+    let currentGroup = [];
+
+    seats.forEach((seat) => {
+      const row = Math.floor(seat / seatsPerRow);
+      if (currentGroup.length === 0 || Math.floor(currentGroup[0] / seatsPerRow) === row) {
+        currentGroup.push(seat);
+      } else {
+        groupedSeats.push(currentGroup);
+        currentGroup = [seat];
+      }
+    });
+
+    if (currentGroup.length > 0) {
+      groupedSeats.push(currentGroup);
+    }
+
+    return groupedSeats.map((group, index) => {
+      const row = Math.floor(group[0] / seatsPerRow) + 1;
+      const seatNumbers = group.map(seat => (seat % seatsPerRow) + 1).join(', ');
+      return `Ряд ${row}: Місце ${seatNumbers}`;
+    }).join(' | ');
   };
 
   return (
@@ -23,7 +49,7 @@ function CinemaHall({ movieId }) {
         ))}
       </div>
       <div className="selected-info">
-        Вибрані місця: {selectedSeats.join(', ') || 'немає'}
+        Вибрані місця: {selectedSeats.length > 0 ? formatSeats(selectedSeats) : 'немає'}
       </div>
     </div>
   );
