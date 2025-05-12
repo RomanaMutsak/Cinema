@@ -50,6 +50,60 @@
   margin-top: 10px;
 }
 
+.booking-form {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.booking-form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.booking-form input {
+  padding: 10px 14px;
+  border: 2px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.booking-form input:focus {
+  border-color: #6cb5e9;
+  outline: none;
+  background-color: #f0f4ff;
+}
+
+.booking-form button {
+  padding: 12px;
+  background-color: #f454b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booking-form button:hover {
+  background-color: #d7476b;
+}
+
+.booking-form .error {
+  color: #e53935;
+  font-size: 14px;
+}
+
 
 /* Адаптивність */
 @media (max-width: 768px) {
