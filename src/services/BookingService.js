@@ -1,20 +1,14 @@
-const BOOKING_KEY = 'bookings';
+const BookingService = {
+  getBookedSeats: (movieId) => {
+    const bookings = JSON.parse(localStorage.getItem('bookings')) || {};
+    return bookings[movieId] || [];
+  },
 
-export const saveBooking = (movieId, userData, selectedSeats) => {
-  const current = JSON.parse(localStorage.getItem(BOOKING_KEY)) || {};
-  if (!current[movieId]) current[movieId] = [];
-
-  const newBooking = {
-    ...userData,
-    seats: selectedSeats
-  };
-
-  current[movieId].push(newBooking);
-  localStorage.setItem(BOOKING_KEY, JSON.stringify(current));
+  bookSeats: (movieId, seats) => {
+    const bookings = JSON.parse(localStorage.getItem('bookings')) || {};
+    bookings[movieId] = [...(bookings[movieId] || []), ...seats];
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+  }
 };
 
-export const getBookedSeats = (movieId) => {
-  const data = JSON.parse(localStorage.getItem(BOOKING_KEY)) || {};
-  const bookings = data[movieId] || [];
-  return bookings.flatMap(b => b.seats);
-};
+export default BookingService;
